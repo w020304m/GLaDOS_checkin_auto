@@ -32,9 +32,9 @@ if __name__ == '__main__':
         
         # 获取最新的 balance
         balance = "N/A"
-        if 'list' in checkin_data and len(checkin_data['list']) > 0:
-                latest_record = checkin_data['list'][-1]
-                balance = latest_record.get('balance', 'N/A')
+        if 'list' in checkin.text and len(checkin.text['list']) > 0:
+                first_record = checkin.text['list'][0]
+                balance = first_record.get('balance', 'N/A')
 
         
         if 'message' in checkin.text:
