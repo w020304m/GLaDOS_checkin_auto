@@ -40,8 +40,8 @@ if __name__ == '__main__':
         
         if 'message' in checkin_data:
             mess = checkin_data.get('message')
-            print(email+'----结果------余额('+balance+')----'+mess+'----剩余('+time+')天')  # 日志输出
-            sendContent += email+'----余额('+balance+')----'+mess+'----剩余('+time+')天\n'
+            print(email+'----结果------余额('+float(balance)+')----'+mess+'----剩余('+time+')天')  # 日志输出
+            sendContent += email+'----余额('+float(balance)+')----'+mess+'----剩余('+time+')天\n'
         else:
             requests.get('http://www.pushplus.plus/send?token=' + sckey + '&content='+email+'cookie已失效')
             print('cookie已失效')  # 日志输出
