@@ -28,17 +28,18 @@ if __name__ == '__main__':
         time = state.json()['data']['leftDays']
         time = time.split('.')[0]
         email = state.json()['data']['email']
+        checkin_data = checkin_response.json()
 
         
         # 获取最新的 balance
         balance = "N/A"
-        if 'list' in checkin.text and len(checkin.text['list']) > 0:
-                first_record = checkin.text['list'][0]
+        if 'list' in checkin_data and len(checkin_data['list']) > 0:
+                first_record = checkin_data['list'][0]
                 balance = first_record.get('balance', 'N/A')
 
         
-        if 'message' in checkin.text:
-            mess = checkin.json()['message']
+        if 'message' in checkin_data:
+            mess = checkin_data.get('message')
             print(email+'----结果------余额('+balance+')----'+mess+'----剩余('+time+')天')  # 日志输出
             sendContent += email+'----余额('+balance+')----'+mess+'----剩余('+time+')天\n'
         else:
