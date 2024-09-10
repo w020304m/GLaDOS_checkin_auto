@@ -28,10 +28,19 @@ if __name__ == '__main__':
         time = state.json()['data']['leftDays']
         time = time.split('.')[0]
         email = state.json()['data']['email']
+
+        
+        # 获取最新的 balance
+        balance = "N/A"
+        if 'list' in checkin_data and len(checkin_data['list']) > 0:
+                latest_record = checkin_data['list'][-1]
+                balance = latest_record.get('balance', 'N/A')
+
+        
         if 'message' in checkin.text:
             mess = checkin.json()['message']
-            print(email+'----结果--'+mess+'----剩余('+time+')天')  # 日志输出
-            sendContent += email+'----'+mess+'----剩余('+time+')天\n'
+            print(email+'----结果------余额('+balance+')----'+mess+'----剩余('+time+')天')  # 日志输出
+            sendContent += email+'----余额('+balance+')----'+mess+'----剩余('+time+')天\n'
         else:
             requests.get('http://www.pushplus.plus/send?token=' + sckey + '&content='+email+'cookie已失效')
             print('cookie已失效')  # 日志输出
