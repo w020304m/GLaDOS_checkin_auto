@@ -27,11 +27,18 @@ def start():
         time = state.json()['data']['leftDays']
         time = time.split('.')[0]
         email = state.json()['data']['email']
+
+        # 获取最新的 balance
+        balance = "N/A"
+        if 'list' in checkin_data and len(checkin_data['list']) > 0:
+                latest_record = checkin_data['list'][-1]
+                balance = latest_record.get('balance', 'N/A')
+                
         if 'message' in checkin.text:
             mess = checkin.json()['message']
-            print(email+'----'+mess+'----剩余('+time+')天')  # 日志输出
+            print(email+'----余额('+balance+')----'+mess+'----剩余('+time+')天')  # 日志输出
             global sendContent
-            sendContent += email+'----'+mess+'----剩余('+time+')天\n'
+            sendContent += email+'----余额('+balance+')----'+mess+'----剩余('+time+')天\n'
         else:
             requests.get('http://www.pushplus.plus/send?token=' + sckey + '&content='+email+'更新cookie')
      #--------------------------------------------------------------------------------------------------------#   
