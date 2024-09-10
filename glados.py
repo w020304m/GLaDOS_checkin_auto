@@ -28,7 +28,7 @@ if __name__ == '__main__':
         time = state.json()['data']['leftDays']
         time = time.split('.')[0]
         email = state.json()['data']['email']
-        checkin_data = checkin_response.json()
+        checkin_data = checkin.json()
 
         
         # 获取最新的 balance
