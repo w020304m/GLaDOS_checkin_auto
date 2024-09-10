@@ -32,10 +32,13 @@ if __name__ == '__main__':
 
         
         # 获取最新的 balance
+        # 获取最新的 balance
         balance = "N/A"
         if 'list' in checkin_data and len(checkin_data['list']) > 0:
                 first_record = checkin_data['list'][0]
                 balance = float(first_record.get('balance', 'N/A'))
+                balance=format(balance, '.1f')
+
 
         
         if 'message' in checkin_data:
